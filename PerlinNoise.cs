@@ -1,8 +1,13 @@
-﻿using System;
+using System;
 namespace DNoise
 {
     public class PerlinNoise
     {
+        float seed;
+        public PerlinNoise() {
+            seed = new Random().Next(1000, 10000);
+        }
+
         struct vector2 {
             public float x, y;
         }
@@ -40,7 +45,7 @@ namespace DNoise
 
         vector2 gradient(int ix, int iy) {
 
-            float rand = (float)(2920 * Math.Sin(ix*21942+iy*171324+8912) * Math.Cos(ix*23157*iy*217832+6758));
+            float rand = (float)(seed * Math.Sin(ix*21942+iy*171324+8912) * Math.Cos(ix*23157*iy*217832+6758));
             vector2 grad = new vector2();
             grad.x = (float)Math.Sin(rand);
             grad.y = (float)Math.Cos(rand);
